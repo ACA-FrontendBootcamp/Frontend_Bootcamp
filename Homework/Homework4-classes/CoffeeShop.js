@@ -30,7 +30,8 @@ class CoffeeShop{
         for (let i = 0; i< this.menu.length; i++){
             if (this.menu[i].name == name){
                 this.orders.push(this.menu[i]);
-                console.log("Add order!")
+                console.log("Add order!");
+                break;
             } 
             else if (this.menu[i].name != name && i == this.menu.length-1)
             {
@@ -59,10 +60,12 @@ class CoffeeShop{
 
     dueAmount(){
         let sumPrice =0;
-        for (let i = 0; i < this.orders.length; i++){
-            sumPrice = sumPrice + this.orders[i].price;
-        }
-        console.log(sumPrice)
+        // for (let i = 0; i < this.orders.length; i++){
+        //     sumPrice = sumPrice + this.orders[i].price;
+        // }
+        sumPrice =  this.orders.reduce((current, item) => item.price + current, sumPrice);
+        console.log(sumPrice);
+
     }
 
     cheapestItem(){
@@ -126,22 +129,16 @@ let coffeeShop1 = new CoffeeShop({
     orders: [],
 })
 
-//console.log(coffeeShop1)
+
 coffeeShop1.addOrder("bacon");
 coffeeShop1.addOrder("coffee");
-console.log(coffeeShop1)
 coffeeShop1.listOrders()
+coffeeShop1.dueAmount()
 coffeeShop1.fullfillOrder()
 
-// coffeeShop1.fullfillOrder()
-// coffeeShop1.listOrders()
-// dueAmount().fullfillOrder()
-coffeeShop1.dueAmount()
-coffeeShop1.drinksOnly()
 coffeeShop1.foodOnly()
+coffeeShop1.drinksOnly()
 coffeeShop1.cheapestItem()
-//coffeeShop1.listOrders()
-// coffeeShop1.fullfillOrder()
-// coffeeShop1.fullfillOrder()
-// coffeeShop1.listOrders()
+
+
 
