@@ -1,0 +1,14 @@
+.element {
+    width: 100px;
+    height: 200px;
+    border: 1px solid red;
+    background-color: aquamarine;
+    text-align: center;
+   
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
