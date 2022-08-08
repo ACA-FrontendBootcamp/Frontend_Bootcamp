@@ -25,18 +25,16 @@ class University{
         this.students = students;
     }
     addMember(member){
-        let newPerson;
-        newPerson = new UniversityMember(member);
-        if (newPerson.role == "student"){
-            this.students.push(newPerson)
+        if (member.role == "student"){
+            this.students.push(member)
         }
-        else if (newPerson.role == "teacher"){
-            this.teachers.push(newPerson)
+        else if (member.role == "teacher"){
+            this.teachers.push(member)
         }
     }
-    removeMember(name){
-        this.students = this.students.filter((item) => item.name !== name);
-        this.teachers = this.teachers.filter((item) => item.name !== name);
+    removeMember(member){
+        this.students = this.students.filter((item) => item.name !== member.name);
+        this.teachers = this.teachers.filter((item) => item.name !== member.name);
     }
     startLesson(){
         for (let  i =0; i< this.teachers.length; i++){
@@ -54,7 +52,25 @@ class UniversityMember{
         this.age = props.age;
         this.role = props.role;
         this.energy = props.energy || 26;
+    }  
+}
+
+
+class Student extends UniversityMember{
+    constructor(name, age, role, energy){
+        super(name, age,role, energy );
+        this.role = 'student';
+        }
+    info(){
+        return `Name: ${this.name}, age: ${this.age}, role: ${this.role}, energy: ${this.energy}`
     }
+}
+
+class Teacher extends UniversityMember{
+    constructor(name, age, role, energy){
+        super(name, age,role, energy );
+        this.role = 'teacher';
+        }
     info(){
         return `Name: ${this.name}, age: ${this.age}, role: ${this.role}, energy: ${this.energy}`
     }
@@ -62,45 +78,56 @@ class UniversityMember{
 
 
 
+let student1 = new Student({
+        name: 'Narek',
+        age: 26,
+        role: 'student',
+        energy : 9,
+})
+
+let student2 = new Student({
+        name: 'Manya',
+        age: 25,
+        role: 'student',
+})
+
+let teacher1 = new Teacher({
+        name: 'Elmira',
+        age: 25,
+        role: 'teacher',
+        energy : 10,
+})
+
+let teacher2 = new Teacher({
+        name: 'Vardges',
+        age: 25,
+        role: 'teacher',
+        energy : 10,
+})
+
+let teacher3 = new Teacher({
+        name: 'David',
+        age: 25,
+        role: 'teacher',
+        energy : 10,
+})
+
+
+
 let class1 = new University();
+class1.addMember(student1)
+class1.addMember(student2)
+class1.addMember(teacher1)
+class1.addMember(teacher2)
+class1.addMember(teacher3)
 
-class1.addMember({
-    name: 'David',
-    age: 25,
-    role: 'teacher',
-    energy : 10,
-})
-class1.addMember({
-    name: 'Vardges',
-    age: 25,
-    role: 'teacher',
-    energy : 10,
-})
+console.log(class1)
 
-class1.addMember({
-    name: 'Elmira',
-    age: 25,
-    role: 'teacher',
-    energy : 10,
-})
 
-class1.addMember({
-    name: 'Narek',
-    age: 26,
-    role: 'student',
-    energy : 9,
-})
-
-class1.addMember({
-    name: 'Manya',
-    age: 25,
-    role: 'student',
-})
-//console.log(class1)
 class1.startLesson();
 console.log(class1.students[1].info())
-//console.log(class1.removeMember("Manya"));
-class1.removeMember("Vardges")
+class1.removeMember(teacher2);
+class1.removeMember(student1)
 console.log(class1)
 
 
