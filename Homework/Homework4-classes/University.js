@@ -1,23 +1,3 @@
-/*Exercise 1. University
-Create a class named University.
-● It should contain two properties
-○ teachers([]asdefault)
-○ students([]asdefault)
-● It should contain 3 methods
-○ addMember(member
-○ removeMember(member)
-○ startLesson() (description below)
-Formembersyoushouldcreatetwoclasses,Teacher andStudentwhichwillbeinherited from the class UniversityMember.
-Members should contain 4 properties
-● name
-● age
-● role
-● energy(24asdefault)
-And one method named info() which will return all 4 properties of it.
-After calling the University class startLesson() method, students get -2 of energy
-and teachers get -5 of energy.   */
-
-
 class University{
     constructor(teachers=[], students =[])
     {
@@ -128,6 +108,8 @@ class1.startLesson();
 console.log(class1.students[1].info())
 class1.removeMember(teacher2);
 class1.removeMember(student1)
+console.log(class1)
+class1.startLesson();
 console.log(class1)
 
 
