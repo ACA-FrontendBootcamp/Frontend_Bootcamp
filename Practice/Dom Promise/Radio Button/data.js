@@ -6,13 +6,13 @@ let data = [
         rightAnswer: 'Yerevan',
         score: 80
     },
-    // {
-    //     id: 2,
-    //     score: 10,
-    //     question: 'what is the Capital of Russia',
-    //     answers: ['aha', 'byhy', 'Moscow'],
-    //     rightAnswer: 'Moscow',
-    // }
+    {
+        id: 2,
+        score: 10,
+        question: 'what is the Capital of Russia',
+        answers: ['aha', 'byhy', 'Moscow'],
+        rightAnswer: 'Moscow',
+    }
 ]
 
 let data1 = JSON.stringify(data)

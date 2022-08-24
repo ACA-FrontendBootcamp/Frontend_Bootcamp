@@ -22,9 +22,6 @@ small hint https://www.javascripttutorial.net/javascript-dom/javascript-radio-bu
 const container = document.createElement('div');
 document.body.appendChild(container)
 container.classList.add('container')
-
-let question;
-let input
 //let data = fetch("http://192.168.10.24:3001/quiz")
 
 
@@ -35,52 +32,50 @@ function fetchFunc(){
 
 let data = fetchFunc()
 
-data.then(res =>  res = JSON.parse(res)).then(res => {
-   var finalButton = document.createElement("button")
-   question = res
- res.map (item => {
+data
+  .then((res) => (res = JSON.parse(res)))
+  .then((res) => {
+   
+   let price = document.createElement("h2");
+   let finallButton = document.createElement("button");
+   finallButton.innerHTML = "Finish";
 
-let legend = document.createElement('div')
-container.appendChild(legend)
-legend.classList.add('legend')
-legend.innerText = item.question;
+   let sum = 0;
+   res.map((item) => {
 
+   let container = document.createElement("div");
+   container.setAttribute("id", item.id);
 
+   let question = document.createElement("p");
+   question.innerHTML = item.question;
+   container.appendChild(question);
 
+   let con = document.createElement("div");
+   item.answers.map((itemm) => {
+   let answer = document.createElement("p");
+   answer.innerHTML = itemm;
 
+   let inp = document.createElement("input");
+   inp.type = "radio";
+   inp.name = item.id;
+   inp.setAttribute("type", "radio");
+   
+   con.appendChild(answer);
+   con.appendChild(inp);
+   container.appendChild(con);
+   
+   finallButton.addEventListener("click", () => {
+     if (inp.checked) {
+      if (answer.innerHTML == item.rightAnswer) {
+         sum += item.score;
+      }
+   }
+   price.innerHTML = "scor = " + sum;
+});
 
-finalButton.innerHTML = "Finish"
-finalButton.classList.add('finalButton')
-
-item.answers.forEach(answers => {
-   console.log(answers)
-      let box = document.createElement('div')
-   legend.appendChild(box)
-   box.classList.add('box');
-
-    input= document.createElement('input')
-   box.appendChild(input);
-   input.type = "radio";
-   input.name = item.id
-input.value = answers
-   let task = document.createElement('p');
-   task.innerHTML = answers
-   box.appendChild(task)
-   task.classList.add('task')
-  
-
-})
-
-finalButton.addEventListener("click", () =>  {
-
-
-console.log(question)
-console.log(input.value)
-
-})
-container.appendChild(finalButton)
-
-})
- }
-
-)
+});
+      document.body.appendChild(container);
+  });
+    document.body.appendChild(finallButton);
+    document.body.appendChild(price);
+  });
